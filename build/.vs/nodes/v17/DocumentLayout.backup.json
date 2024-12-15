@@ -1,0 +1,78 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\devel\\nodes\\build\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1C0410-EA30-2CC1-B3B2-CF201F8628F2}|nodes.vcxproj|C:\\devel\\nodes\\src\\nodes_basic.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1C0410-EA30-2CC1-B3B2-CF201F8628F2}|nodes.vcxproj|C:\\devel\\nodes\\src\\nodes_basic.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7E1C0410-EA30-2CC1-B3B2-CF201F8628F2}|nodes.vcxproj|C:\\devel\\nodes\\src\\nodes_types.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "nodes_types.hpp",
+              "DocumentMoniker": "C:\\devel\\nodes\\src\\nodes_types.hpp",
+              "RelativeDocumentMoniker": "..\\src\\nodes_types.hpp",
+              "ToolTip": "C:\\devel\\nodes\\src\\nodes_types.hpp",
+              "RelativeToolTip": "..\\src\\nodes_types.hpp",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-15T20:32:14.346Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "nodes_basic.hpp",
+              "DocumentMoniker": "C:\\devel\\nodes\\src\\nodes_basic.hpp",
+              "RelativeDocumentMoniker": "..\\src\\nodes_basic.hpp",
+              "ToolTip": "C:\\devel\\nodes\\src\\nodes_basic.hpp",
+              "RelativeToolTip": "..\\src\\nodes_basic.hpp",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-15T20:34:08.197Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "nodes_basic.cpp",
+              "DocumentMoniker": "C:\\devel\\nodes\\src\\nodes_basic.cpp",
+              "RelativeDocumentMoniker": "..\\src\\nodes_basic.cpp",
+              "ToolTip": "C:\\devel\\nodes\\src\\nodes_basic.cpp",
+              "RelativeToolTip": "..\\src\\nodes_basic.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-15T20:32:40.431Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
