@@ -48,6 +48,11 @@ namespace nodes
 		Index GetNodeIndex() const override;
 		NumberDof GetNumberDof() const override;
 
+		const Elements& GetElements() const override;
+		void AddElement(IElementPtr element) override;
+		void RemoveElement(IElementPtr element) override;
+		void ClearElements() override;
+
 	protected:
 		Node();
 
@@ -55,6 +60,8 @@ namespace nodes
 		Matrix value_;
 		Index index_;
 		Tag	tag_{ 0 };
+
+		Elements elements_;
 	};
 } // namespace nodes
 

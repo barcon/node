@@ -8,6 +8,15 @@
 #include <memory>
 #include <vector>
 
+namespace dive
+{
+	class IElement;
+	using IElementPtr = std::shared_ptr< IElement >;
+	using ConstIElementPtr = std::shared_ptr< const IElement >;
+
+	using Elements = std::vector<IElementPtr>;
+}
+
 namespace nodes
 {
 	using Scalar = eilig::Scalar;
@@ -24,6 +33,9 @@ namespace nodes
 	using String = utils::String;
 	using Tag = std::size_t;
 	using Dimension = std::size_t;
+
+	using IElementPtr = dive::IElementPtr;
+	using Elements = dive::Elements;
 
 	const String headerNode = "NODE";
 
@@ -51,6 +63,11 @@ namespace nodes
 
 		virtual Index GetNodeIndex() const = 0;
 		virtual NumberDof GetNumberDof() const = 0;
+
+		virtual const Elements& GetElements() const = 0;
+		virtual void AddElement(IElementPtr element) = 0;
+		virtual void RemoveElement(IElementPtr element) = 0;
+		virtual void ClearElements() = 0;
 
 	protected:
 		INode() = default;

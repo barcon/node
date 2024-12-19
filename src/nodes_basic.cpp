@@ -239,4 +239,31 @@ namespace nodes
 	{
 		return value_.GetData().size();
 	}
+
+	const Elements& Node::GetElements() const
+	{
+		return elements_;
+	}
+	void Node::AddElement(IElementPtr element)
+	{
+		auto it = std::find(elements_.begin(), elements_.end(), element);
+
+		if (it == elements_.end())
+		{
+			elements_.push_back(element);
+		}
+	}
+	void Node::RemoveElement(IElementPtr element)
+	{
+		auto it = std::find(elements_.begin(), elements_.end(), element);
+
+		if (it != elements_.end())
+		{
+			elements_.erase(it);
+		}
+	}
+	void Node::ClearElements()
+	{
+		elements_.clear();
+	}
 } //namespace nodes
