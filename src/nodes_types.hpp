@@ -10,11 +10,12 @@
 
 namespace dive
 {
-	class IElement;
-	using IElementPtr = std::shared_ptr< IElement >;
-	using ConstIElementPtr = std::shared_ptr< const IElement >;
-
-	using Elements = std::vector<IElementPtr>;
+	namespace elements
+	{
+		class IElement;
+		using IElementPtr = std::shared_ptr< IElement >;
+		using ConstIElementPtr = std::shared_ptr< const IElement >;
+	}
 }
 
 namespace nodes
@@ -34,8 +35,8 @@ namespace nodes
 	using Tag = std::size_t;
 	using Dimension = std::size_t;
 
-	using IElementPtr = dive::IElementPtr;
-	using Elements = dive::Elements;
+	using IElementPtr = dive::elements::IElementPtr;
+	using Elements = std::vector<IElementPtr>;
 
 	const String headerNode = "NODE";
 
