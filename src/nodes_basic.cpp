@@ -197,7 +197,7 @@ namespace nodes
 	{
 		if (point.GetRows() != 3)
 		{
-			logger::Error(headerNode, "Number of dof equal to zero");
+			logger::Error(headerNode, "Size of point vector not compatible");
 			return;
 		}
 

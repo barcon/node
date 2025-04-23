@@ -61,11 +61,9 @@ namespace nodes
 		virtual void SetValue(DofIndex dofIndex, Scalar value) = 0;
 		virtual void SetTag(Tag tag) = 0;
 		virtual void SetNodeIndex(const Index& index) = 0;
-		virtual void SetGlobalDofIndex(const DofIndex& dof, const Index& globalDofIndex) = 0;
 		virtual void SetNumberDof(const NumberDof& numberDof) = 0;
 
 		virtual Index GetNodeIndex() const = 0;
-		virtual DofIndex GetGlobalDofIndex(const DofIndex& dof) const = 0;
 		virtual NumberDof GetNumberDof() const = 0;
 
 		virtual const Elements& GetElements() const = 0;
