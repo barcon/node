@@ -43,9 +43,11 @@ namespace nodes
 		void SetValue(DofIndex dofIndex, Scalar value) override;
 		void SetTag(Tag tag) override;
 		void SetNodeIndex(const Index& index) override;
+		void SetGlobalDofIndex(const DofIndex& dof, const Index& globalDofIndex) override;
 		void SetNumberDof(const NumberDof& numberDof) override;
 		
 		Index GetNodeIndex() const override;
+		DofIndex GetGlobalDofIndex(const DofIndex& dof) const override;
 		NumberDof GetNumberDof() const override;
 
 		const Elements& GetElements() const override;
@@ -62,6 +64,7 @@ namespace nodes
 		Tag	tag_{ 0 };
 
 		Elements elements_;
+		DofIndices dofIndices;
 	};
 } // namespace nodes
 

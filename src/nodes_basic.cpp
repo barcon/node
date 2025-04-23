@@ -197,6 +197,7 @@ namespace nodes
 	{
 		if (point.GetRows() != 3)
 		{
+			logger::Error(headerNode, "Number of dof equal to zero");
 			return;
 		}
 
@@ -222,6 +223,7 @@ namespace nodes
 	{
 		if (numberDof == 0)
 		{
+			logger::Error(headerNode,"Number of dof equal to zero");
 			return;
 		}
 
