@@ -238,25 +238,3 @@ namespace nodes
 		return connectivity_;
 	}
 } //namespace nodes
-
-/*
-	void Node::AddElement(IElementPtr element)
-	{
-		auto it = std::find(elements_.begin(), elements_.end(), element);
-
-		if (it == elements_.end())
-		{
-			elements_.push_back(element);
-		}
-	}
-
-	void Node::RemoveElement(IElementPtr element)
-	{
-		auto it = std::find(elements_.begin(), elements_.end(), element);
-
-		if (it != elements_.end())
-		{
-			elements_.erase(it);
-		}
-	}
-*/
