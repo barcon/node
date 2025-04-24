@@ -42,16 +42,10 @@ namespace nodes
 		void SetValue(const Matrix& value) override;
 		void SetValue(DofIndex dofIndex, Scalar value) override;
 		void SetTag(Tag tag) override;
-		void SetNodeIndex(const Index& index) override;
 		void SetNumberDof(const NumberDof& numberDof) override;
 		
-		Index GetNodeIndex() const override;
 		NumberDof GetNumberDof() const override;
-
-		const Elements& GetElements() const override;
-		void AddElement(IElementPtr element) override;
-		void RemoveElement(IElementPtr element) override;
-		void ClearElements() override;
+		Connectivity& GetConnectivity() override;
 
 	protected:
 		Node();
@@ -61,8 +55,7 @@ namespace nodes
 		Index index_;
 		Tag	tag_{ 0 };
 
-		Elements elements_;
-		DofIndices dofIndices;
+		Connectivity connectivity_;
 	};
 } // namespace nodes
 

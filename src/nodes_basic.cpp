@@ -215,10 +215,6 @@ namespace nodes
 	{
 		tag_ = tag;
 	}
-	void Node::SetNodeIndex(const Index& index)
-	{
-		index_ = index;
-	}
 	void Node::SetNumberDof(const NumberDof& numberDof)
 	{
 		if (numberDof == 0)
@@ -233,19 +229,17 @@ namespace nodes
 		}
 	}
 
-	Index Node::GetNodeIndex() const
-	{
-		return index_;
-	}
 	NumberDof Node::GetNumberDof() const
 	{
 		return value_.GetData().size();
 	}
-
-	const Elements& Node::GetElements() const
+	Connectivity& Node::GetConnectivity()
 	{
-		return elements_;
+		return connectivity_;
 	}
+} //namespace nodes
+
+/*
 	void Node::AddElement(IElementPtr element)
 	{
 		auto it = std::find(elements_.begin(), elements_.end(), element);
@@ -255,6 +249,7 @@ namespace nodes
 			elements_.push_back(element);
 		}
 	}
+
 	void Node::RemoveElement(IElementPtr element)
 	{
 		auto it = std::find(elements_.begin(), elements_.end(), element);
@@ -264,8 +259,4 @@ namespace nodes
 			elements_.erase(it);
 		}
 	}
-	void Node::ClearElements()
-	{
-		elements_.clear();
-	}
-} //namespace nodes
+*/

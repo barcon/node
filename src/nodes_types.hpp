@@ -27,7 +27,8 @@ namespace nodes
 	using Number = std::size_t;
 	using NumberDof = Number;
 
-	using Index = eilig::Index;
+	using Index = std::size_t;
+	using Indices = std::vector<Index>;
 	using DofIndex = Index;
 	using DofIndices = std::vector<DofIndex>;
 
@@ -35,11 +36,17 @@ namespace nodes
 	using String = utils::String;
 	using Tag = std::size_t;
 	using Dimension = std::size_t;
+	
+	const String headerNode = "NODE";
 
 	using IElementPtr = dive::elements::IElementPtr;
 	using Elements = std::vector<IElementPtr>;
 
-	const String headerNode = "NODE";
+	struct Connectivity {
+		Index nodeIndex;
+		DofIndices globalDofIndices;
+		Elements elements;
+	};
 
 	class INode;
 	using INodePtr = std::shared_ptr< INode >;
@@ -60,16 +67,10 @@ namespace nodes
 		virtual void SetValue(const Matrix& value) = 0;
 		virtual void SetValue(DofIndex dofIndex, Scalar value) = 0;
 		virtual void SetTag(Tag tag) = 0;
-		virtual void SetNodeIndex(const Index& index) = 0;
 		virtual void SetNumberDof(const NumberDof& numberDof) = 0;
 
-		virtual Index GetNodeIndex() const = 0;
 		virtual NumberDof GetNumberDof() const = 0;
-
-		virtual const Elements& GetElements() const = 0;
-		virtual void AddElement(IElementPtr element) = 0;
-		virtual void RemoveElement(IElementPtr element) = 0;
-		virtual void ClearElements() = 0;
+		virtual Connectivity& GetConnectivity() = 0;
 
 	protected:
 		INode() = default;
