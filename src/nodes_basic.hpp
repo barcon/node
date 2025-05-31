@@ -10,17 +10,12 @@ namespace nodes
 	using ConstNodePtr = std::shared_ptr< const Node >;
 
 	NodePtr CreateNode();
-	NodePtr CreateNode(Tag nodeTag);
-	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y, Scalar z);
-	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y, Scalar z, Scalar value);
-	NodePtr CreateNode(Tag nodeTag, const Vector& point);
-	NodePtr CreateNode(Tag nodeTag, const Vector& point, const Matrix& value);
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof);
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x);
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y);
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y, Scalar z);
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, const Vector& point);
 
-	NodePtr CreateNode(Scalar x, Scalar y, Scalar z);
-	NodePtr CreateNode(Scalar x, Scalar y, Scalar z, Scalar value);
-	NodePtr CreateNode(const Vector& point);
-	NodePtr CreateNode(const Vector& point, const Matrix& value);
-	
 	Nodes	CreateNodes(const Matrix& input, Dimension dim);
 
 	class Node : public INode, virtual public std::enable_shared_from_this<Node>

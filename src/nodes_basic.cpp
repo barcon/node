@@ -8,87 +8,56 @@ namespace nodes
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag)
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof)
 	{
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
+		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y, Scalar z)
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x)
 	{
-		auto res = CreateNode();
+		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
-		res->SetPoint(x, y, z);
+		res->SetPoint(Vector(1, 0.0));
+		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y, Scalar z, Scalar value)
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y)
 	{
-		auto res = CreateNode();
+		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
-		res->SetPoint(x, y, z);
-		res->SetValue(0, value);
+		res->SetPoint(Vector(2, 0.0));
+		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, const Vector& point)
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y, Scalar z)
 	{
-		auto res = CreateNode();
+		auto res = Node::Create();
+
+		res->SetTag(nodeTag);
+		res->SetPoint(Vector(3, 0.0));
+		res->SetNumberDof(numberDof);
+
+		return res;
+	}
+	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, const Vector& point)
+	{
+		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
 		res->SetPoint(point);
+		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, const Vector& point, const Matrix& value)
-	{
-		auto res = CreateNode();
 
-		res->SetTag(nodeTag);
-		res->SetPoint(point);
-		res->SetValue(value);
-
-		return res;
-	}	
-	NodePtr CreateNode(Scalar x, Scalar y, Scalar z)
-	{
-		auto res = CreateNode();
-
-		res->SetPoint(x, y, z);
-
-		return res;
-	}
-	NodePtr CreateNode(Scalar x, Scalar y, Scalar z, Scalar value)
-	{
-		auto res = CreateNode();
-
-		res->SetPoint(x, y, z);
-		res->SetValue(0, value);
-
-		return res;
-	}
-	NodePtr CreateNode(const Vector& point)
-	{
-		auto res = CreateNode();
-
-		res->SetPoint(point);
-
-		return res;
-	}
-	NodePtr CreateNode(const Vector& point, const Matrix& value)
-	{
-		auto res = CreateNode();
-
-		res->SetPoint(point);
-		res->SetValue(value);
-
-		return res;
-	}
-	
 	Nodes	CreateNodes(const Matrix& input, Dimension dim)
 	{
 		auto rows = input.GetRows();
