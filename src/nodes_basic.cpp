@@ -8,52 +8,47 @@ namespace nodes
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof)
+	NodePtr CreateNode(Tag nodeTag)
 	{
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
-		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x)
+	NodePtr CreateNode(Tag nodeTag, Scalar x)
 	{
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
 		res->SetPoint(Vector(1, 0.0));
-		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y)
+	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y)
 	{
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
 		res->SetPoint(Vector(2, 0.0));
-		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y, Scalar z)
+	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y, Scalar z)
 	{
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
 		res->SetPoint(Vector(3, 0.0));
-		res->SetNumberDof(numberDof);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, const Vector& point)
+	NodePtr CreateNode(Tag nodeTag, const Vector& point)
 	{
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
 		res->SetPoint(point);
-		res->SetNumberDof(numberDof);
 
 		return res;
 	}
@@ -108,13 +103,13 @@ namespace nodes
 			switch (dim)
 			{
 			case 1:
-				node = nodes::CreateNode(i, 1, input(i, 0));
+				node = nodes::CreateNode(i, input(i, 0));
 				break;
 			case 2:
-				node = nodes::CreateNode(i, 1, input(i, 0), input(i, 1));
+				node = nodes::CreateNode(i, input(i, 0), input(i, 1));
 				break;
 			case 3:
-				node = nodes::CreateNode(i, 1, input(i, 0), input(i, 1), input(i, 2));
+				node = nodes::CreateNode(i, input(i, 0), input(i, 1), input(i, 2));
 				break;
 			}
 
