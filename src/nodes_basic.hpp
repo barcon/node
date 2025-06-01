@@ -15,6 +15,7 @@ namespace nodes
 	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y);
 	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y, Scalar z);
 	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, const Vector& point);
+	NodePtr CreateNode(Tag nodeTag, const Vector& point, const Matrix& value);
 
 	Nodes	CreateNodes(const Matrix& input, Dimension dim);
 

@@ -57,8 +57,18 @@ namespace nodes
 
 		return res;
 	}
+	NodePtr CreateNode(Tag nodeTag, const Vector& point, const Matrix& value)
+	{
+		auto res = Node::Create();
 
-	Nodes	CreateNodes(const Matrix& input, Dimension dim)
+		res->SetTag(nodeTag);
+		res->SetPoint(point);
+		res->SetValue(value);
+
+		return res;
+	}
+
+	Nodes CreateNodes(const Matrix& input, Dimension dim)
 	{
 		auto rows = input.GetRows();
 		auto cols = input.GetCols();
@@ -66,6 +76,7 @@ namespace nodes
 		Matrix value;
 		Nodes nodes;
 		NodePtr node{ nullptr };
+		Vector point;
 		
 		if ((dim < 1) || (dim > 3))
 		{
@@ -97,17 +108,16 @@ namespace nodes
 			switch (dim)
 			{
 			case 1:
-				node = nodes::CreateNode(input(i, 0), 0.0, 0.0);
+				node = nodes::CreateNode(i, 1, input(i, 0));
 				break;
 			case 2:
-				node = nodes::CreateNode(input(i, 0), input(i, 1), 0.0);
+				node = nodes::CreateNode(i, 1, input(i, 0), input(i, 1));
 				break;
 			case 3:
-				node = nodes::CreateNode(input(i, 0), input(i, 1), input(i, 2));
+				node = nodes::CreateNode(i, 1, input(i, 0), input(i, 1), input(i, 2));
 				break;
 			}
 
-			node->SetTag(i);
 			node->SetValue(value);
 			nodes.push_back(node);
 		}
@@ -158,13 +168,18 @@ namespace nodes
 	
 	void Node::SetPoint(Scalar x, Scalar y, Scalar z)
 	{
+		if (point_.GetRows() != 3)
+		{
+			point_.Resize(3);
+		}
+
 		point_(0) = x;
 		point_(1) = y;
 		point_(2) = z;
 	}
 	void Node::SetPoint(const Vector& point)
 	{
-		if (point.GetRows() != 3)
+		if (point.GetRows() == 0)
 		{
 			logger::Error(headerNode, "Size of point vector not compatible");
 			return;
