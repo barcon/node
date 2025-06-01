@@ -10,11 +10,11 @@ namespace nodes
 	using ConstNodePtr = std::shared_ptr< const Node >;
 
 	NodePtr CreateNode();
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof);
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x);
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y);
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, Scalar x, Scalar y, Scalar z);
-	NodePtr CreateNode(Tag nodeTag, NumberDof numberDof, const Vector& point);
+	NodePtr CreateNode(Tag nodeTag);
+	NodePtr CreateNode(Tag nodeTag, Scalar x);
+	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y);
+	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y, Scalar z);
+	NodePtr CreateNode(Tag nodeTag, const Vector& point);
 	NodePtr CreateNode(Tag nodeTag, const Vector& point, const Matrix& value);
 
 	Nodes	CreateNodes(const Matrix& input, Dimension dim);
@@ -33,6 +33,8 @@ namespace nodes
 		Scalar GetValue(DofIndex dofIndex) const override;
 		Tag	GetTag() const override;
 
+		void SetPoint(Scalar x) override;
+		void SetPoint(Scalar x, Scalar y) override;
 		void SetPoint(Scalar x, Scalar y, Scalar z) override;
 		void SetPoint(const Vector& point) override;
 		void SetValue(const Matrix& value) override;

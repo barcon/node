@@ -21,7 +21,7 @@ namespace nodes
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
-		res->SetPoint(Vector(1, 0.0));
+		res->SetPoint(x);
 
 		return res;
 	}
@@ -30,7 +30,7 @@ namespace nodes
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
-		res->SetPoint(Vector(2, 0.0));
+		res->SetPoint(x, y);
 
 		return res;
 	}
@@ -39,7 +39,7 @@ namespace nodes
 		auto res = Node::Create();
 
 		res->SetTag(nodeTag);
-		res->SetPoint(Vector(3, 0.0));
+		res->SetPoint(x, y, z);
 
 		return res;
 	}
@@ -161,6 +161,25 @@ namespace nodes
 		return tag_;
 	}
 	
+	void Node::SetPoint(Scalar x)
+	{
+		if (point_.GetRows() != 1)
+		{
+			point_.Resize(1);
+		}
+
+		point_(0) = x;
+	}
+	void Node::SetPoint(Scalar x, Scalar y)
+	{
+		if (point_.GetRows() != 2)
+		{
+			point_.Resize(2);
+		}
+
+		point_(0) = x;
+		point_(1) = y;
+	}
 	void Node::SetPoint(Scalar x, Scalar y, Scalar z)
 	{
 		if (point_.GetRows() != 3)

@@ -62,6 +62,8 @@ namespace nodes
 		virtual Scalar GetValue(DofIndex dofIndex) const = 0;
 		virtual Tag	GetTag() const = 0;
 
+		virtual void SetPoint(Scalar x) = 0;
+		virtual void SetPoint(Scalar x, Scalar y) = 0;
 		virtual void SetPoint(Scalar x, Scalar y, Scalar z) = 0;
 		virtual void SetPoint(const Vector& point) = 0;
 		virtual void SetValue(const Matrix& value) = 0;
