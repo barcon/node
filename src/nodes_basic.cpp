@@ -223,7 +223,7 @@ namespace nodes
 
 		if (numberDof != GetNumberDof())
 		{
-			SetValue(Matrix(numberDof, 1, 0.0));
+			SetValue(Matrix(numberDof, 1, eilig::matrix_zeros));
 		}
 	}
 
