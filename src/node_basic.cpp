@@ -1,6 +1,6 @@
-#include "nodes_basic.hpp"
+#include "node_basic.hpp"
 
-namespace nodes
+namespace node
 {
 	NodePtr CreateNode()
 	{
@@ -103,13 +103,13 @@ namespace nodes
 			switch (dim)
 			{
 			case 1:
-				node = nodes::CreateNode(i, input(i, 0));
+				node = node::CreateNode(i, input(i, 0));
 				break;
 			case 2:
-				node = nodes::CreateNode(i, input(i, 0), input(i, 1));
+				node = node::CreateNode(i, input(i, 0), input(i, 1));
 				break;
 			case 3:
-				node = nodes::CreateNode(i, input(i, 0), input(i, 1), input(i, 2));
+				node = node::CreateNode(i, input(i, 0), input(i, 1), input(i, 2));
 				break;
 			}
 
@@ -235,4 +235,4 @@ namespace nodes
 	{
 		return connectivity_;
 	}
-} //namespace nodes
+} //namespace node

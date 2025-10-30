@@ -1,9 +1,9 @@
 -- premake5.lua
-workspace "nodes"
+workspace "node"
 	configurations { "Debug", "Release" }
 	location "build"
 
-project "nodes"
+project "node"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"

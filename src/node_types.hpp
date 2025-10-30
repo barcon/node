@@ -1,5 +1,5 @@
-#ifndef NODES_TYPES_HPP_
-#define NODES_TYPES_HPP_
+#ifndef NODE_TYPES_HPP_
+#define NODE_TYPES_HPP_
 
 #include "utils.hpp"
 #include "logger.hpp"
@@ -18,7 +18,7 @@ namespace dive
 	}
 }
 
-namespace nodes
+namespace node
 {
 	using Scalar = eilig::Scalar;
 	using Vector = eilig::Vector;
@@ -80,6 +80,6 @@ namespace nodes
 
 	using Nodes = std::vector<INodePtr>;
 
-} // namespace nodes
+} // namespace node
 
-#endif /* NODES_TYPES_HPP_*/
+#endif /* NODE_TYPES_HPP_*/

@@ -1,9 +1,9 @@
-#ifndef NODES_BASIC_HPP_
-#define NODES_BASIC_HPP_
+#ifndef NODE_BASIC_HPP_
+#define NODE_BASIC_HPP_
 
-#include "nodes_types.hpp"
+#include "node_types.hpp"
 
-namespace nodes
+namespace node
 {
 	class Node;
 	using NodePtr = std::shared_ptr< Node >;
@@ -55,6 +55,6 @@ namespace nodes
 
 		Connectivity connectivity_;
 	};
-} // namespace nodes
+} // namespace node
 
-#endif /* NODES_BASIC_HPP_*/
+#endif /* NODE_BASIC_HPP_*/

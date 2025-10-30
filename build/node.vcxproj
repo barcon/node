@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7E1C0410-EA30-2CC1-B3B2-CF201F8628F2}</ProjectGuid>
+    <ProjectGuid>{AB469B7C-977D-9C0D-406A-82102C80180F}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>nodes</RootNamespace>
+    <RootNamespace>node</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>Debug\</OutDir>
     <IntDir>obj\Debug\</IntDir>
-    <TargetName>nodes</TargetName>
+    <TargetName>node</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>Release\</OutDir>
     <IntDir>obj\Release\</IntDir>
-    <TargetName>nodes</TargetName>
+    <TargetName>node</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -88,12 +88,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\nodes.hpp" />
-    <ClInclude Include="..\src\nodes_basic.hpp" />
-    <ClInclude Include="..\src\nodes_types.hpp" />
+    <ClInclude Include="..\src\node.hpp" />
+    <ClInclude Include="..\src\node_basic.hpp" />
+    <ClInclude Include="..\src\node_types.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\nodes_basic.cpp" />
+    <ClCompile Include="..\src\node_basic.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
