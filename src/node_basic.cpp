@@ -81,7 +81,7 @@ namespace node
 
 		if (cols < (dim + 1))
 		{
-			logger::Error(headerNode, "Incompatible matrix size, columns < %u", dim + 1);
+			logger::Error(headerNode, utils::string::Format("Incompatible matrix size, columns < {}", dim + 1));
 			return nodes;
 		}
 
