@@ -26,11 +26,13 @@ namespace node
 
 	using Number = std::size_t;
 	using NumberDof = Number;
+	using NumberCoordinates = Number;
 
 	using Index = std::size_t;
 	using Indices = std::vector<Index>;
 	using DofIndex = Index;
 	using DofIndices = std::vector<DofIndex>;
+	using CoordinateIndex = Index;
 
 	using Matrices = std::vector<Matrix>;
 	using String = utils::String;
@@ -59,20 +61,19 @@ namespace node
 
 		virtual const Vector& GetPoint() const = 0;
 		virtual const Matrix& GetValue() const = 0;
+		virtual NumberCoordinates GetNumberCoordinates() const = 0;
+		virtual NumberDof GetNumberDof() const = 0;
 		virtual Scalar GetValue(DofIndex dofIndex) const = 0;
+		virtual Connectivity& GetConnectivity() = 0;
 		virtual Tag	GetTag() const = 0;
 
-		virtual void SetPoint(Scalar x) = 0;
-		virtual void SetPoint(Scalar x, Scalar y) = 0;
-		virtual void SetPoint(Scalar x, Scalar y, Scalar z) = 0;
+		virtual void SetPoint(CoordinateIndex coordinateIndex, Scalar value) = 0;
 		virtual void SetPoint(const Vector& point) = 0;
 		virtual void SetValue(const Matrix& value) = 0;
 		virtual void SetValue(DofIndex dofIndex, Scalar value) = 0;
 		virtual void SetTag(Tag tag) = 0;
 		virtual void SetNumberDof(const NumberDof& numberDof) = 0;
 
-		virtual NumberDof GetNumberDof() const = 0;
-		virtual Connectivity& GetConnectivity() = 0;
 
 	protected:
 		INode() = default;

@@ -2,68 +2,75 @@
 
 namespace node
 {
-	NodePtr CreateNode()
+	NodePtr CreateNode(Tag tag)
 	{
-		auto res = Node::Create();
+		auto res = Node::Create(tag, 3);
+
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag)
+	NodePtr CreateNode(Tag tag, Scalar x)
 	{
-		auto res = Node::Create();
+		auto res = Node::Create(tag, 1);
 
-		res->SetTag(nodeTag);
+		res->SetPoint(0, x);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, Scalar x)
+	NodePtr CreateNode(Tag tag, Scalar x, Scalar y)
 	{
-		auto res = Node::Create();
+		auto res = Node::Create(tag, 2);
 
-		res->SetTag(nodeTag);
-		res->SetPoint(x);
+		res->SetPoint(0, x);
+		res->SetPoint(1, y);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y)
+	NodePtr CreateNode(Tag tag, Scalar x, Scalar y, Scalar z)
 	{
-		auto res = Node::Create();
+		auto res = Node::Create(tag, 3);
 
-		res->SetTag(nodeTag);
-		res->SetPoint(x, y);
+		res->SetPoint(0, x);
+		res->SetPoint(1, y);
+		res->SetPoint(2, z);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, Scalar x, Scalar y, Scalar z)
+	NodePtr CreateNode(Tag tag, const Vector& point)
 	{
-		auto res = Node::Create();
+		NumberCoordinates numberCoordinates = point.GetRows();
 
-		res->SetTag(nodeTag);
-		res->SetPoint(x, y, z);
+		if(numberCoordinates == 0)
+		{
+			logger::Error(headerNode, "Size of point vector not compatible");
+			return nullptr;
+		}
 
-		return res;
-	}
-	NodePtr CreateNode(Tag nodeTag, const Vector& point)
-	{
-		auto res = Node::Create();
+		auto res = Node::Create(tag, numberCoordinates);
 
-		res->SetTag(nodeTag);
 		res->SetPoint(point);
 
 		return res;
 	}
-	NodePtr CreateNode(Tag nodeTag, const Vector& point, const Matrix& value)
+	NodePtr CreateNode(Tag tag, const Vector& point, const Matrix& value)
 	{
-		auto res = Node::Create();
+		NumberCoordinates numberCoordinates = point.GetRows();
 
-		res->SetTag(nodeTag);
+		if (numberCoordinates == 0)
+		{
+			logger::Error(headerNode, "Size of point vector not compatible");
+			return nullptr;
+		}
+
+		auto res = Node::Create(tag, numberCoordinates);
+
 		res->SetPoint(point);
 		res->SetValue(value);
 
 		return res;
 	}
 
-	Nodes CreateNodes(const Matrix& input, Dimension dim)
+	Nodes CreateNodes(const Matrix& input, NumberCoordinates numberCoordinates)
 	{
 		auto rows = input.GetRows();
 		auto cols = input.GetCols();
@@ -73,15 +80,15 @@ namespace node
 		NodePtr node{ nullptr };
 		Vector point;
 		
-		if ((dim < 1) || (dim > 3))
+		if ((numberCoordinates < 1) || (numberCoordinates > 3))
 		{
-			logger::Error(headerNode, "Incompatible dimension, 0 < dim < 4");
+			logger::Error(headerNode, "Incompatible dimension, 0 < number dimensions < 4");
 			return nodes;
 		}
 
-		if (cols < (dim + 1))
+		if (cols < (numberCoordinates + 1))
 		{
-			logger::Error(headerNode, utils::string::Format("Incompatible matrix size, columns < {}", dim + 1));
+			logger::Error(headerNode, utils::string::Format("Incompatible matrix size, columns < {}", numberCoordinates + 1));
 			return nodes;
 		}
 
@@ -91,16 +98,16 @@ namespace node
 			return nodes;
 		}
 
-		value.Resize(1, cols - dim);
+		value.Resize(1, cols - numberCoordinates);
 
 		for (std::size_t i = 0; i < rows; ++i)
 		{
-			for (std::size_t j = 0; j < (cols - dim); ++j)
+			for (std::size_t j = 0; j < (cols - numberCoordinates); ++j)
 			{
-				value(0, j) = input(i, j + dim);
+				value(0, j) = input(i, j + numberCoordinates);
 			}
 
-			switch (dim)
+			switch (numberCoordinates)
 			{
 			case 1:
 				node = node::CreateNode(i, input(i, 0));
@@ -120,28 +127,24 @@ namespace node
 		return nodes;
 	}
 	
-	Node::Node()
-	{
-		SetPoint(Vector(3, 0.0));
-		SetNumberDof(1);
-	}
-	NodePtr Node::Create()
+	NodePtr Node::Create(Tag tag, NumberCoordinates numberCoordinates)
 	{
 		class MakeSharedEnabler : public Node
 		{
 		};
 
+		if (numberCoordinates == 0)
+		{
+			throw std::invalid_argument("Number of coordinates equal to zero (Create Node)");
+		}
+
 		auto res = std::make_shared<MakeSharedEnabler>();
 
+		res->SetTag(tag);
+		res->SetNumberDof(1);
+		res->point_ = Vector(numberCoordinates, 0.0);
+
 		return res;
-	}
-	NodePtr Node::GetPtr()
-	{
-		return std::dynamic_pointer_cast<Node>(shared_from_this());
-	}
-	ConstNodePtr Node::GetPtr() const
-	{
-		return const_cast<Node*>(this)->GetPtr();
 	}
 
 	const Vector& Node::GetPoint() const
@@ -152,48 +155,34 @@ namespace node
 	{
 		return value_;
 	}
+	NumberCoordinates Node::GetNumberCoordinates() const
+	{
+		return point_.GetRows();
+	}
 	Scalar Node::GetValue(DofIndex dofIndex) const
 	{
 		return value_(dofIndex);
+	}
+	NumberDof Node::GetNumberDof() const
+	{
+		return value_.GetData().size();
+	}
+	Connectivity& Node::GetConnectivity()
+	{
+		return connectivity_;
 	}
 	Tag Node::GetTag() const
 	{
 		return tag_;
 	}
 	
-	void Node::SetPoint(Scalar x)
+	void Node::SetPoint(CoordinateIndex coordinateIndex, Scalar value)
 	{
-		if (point_.GetRows() != 1)
-		{
-			point_.Resize(1);
-		}
-
-		point_(0) = x;
-	}
-	void Node::SetPoint(Scalar x, Scalar y)
-	{
-		if (point_.GetRows() != 2)
-		{
-			point_.Resize(2);
-		}
-
-		point_(0) = x;
-		point_(1) = y;
-	}
-	void Node::SetPoint(Scalar x, Scalar y, Scalar z)
-	{
-		if (point_.GetRows() != 3)
-		{
-			point_.Resize(3);
-		}
-
-		point_(0) = x;
-		point_(1) = y;
-		point_(2) = z;
+		point_(coordinateIndex) = value;
 	}
 	void Node::SetPoint(const Vector& point)
 	{
-		if (point.GetRows() == 0)
+		if (point.GetRows() != point_.GetRows())
 		{
 			logger::Error(headerNode, "Size of point vector not compatible");
 			return;
@@ -203,6 +192,12 @@ namespace node
 	}
 	void Node::SetValue(const Matrix& value)
 	{
+		if(value.GetRows() == 0 || value.GetCols() == 0)
+		{
+			logger::Error(headerNode, "Size of value matrix not compatible");
+			return;
+		}
+
 		value_ = value;
 	}
 	void Node::SetValue(DofIndex dofIndex, Scalar value)
@@ -221,18 +216,6 @@ namespace node
 			return;
 		}
 
-		if (numberDof != GetNumberDof())
-		{
-			SetValue(Matrix(numberDof, 1, eilig::matrix_zeros));
-		}
-	}
-
-	NumberDof Node::GetNumberDof() const
-	{
-		return value_.GetData().size();
-	}
-	Connectivity& Node::GetConnectivity()
-	{
-		return connectivity_;
+		SetValue(Matrix(numberDof, 1, eilig::matrix_zeros));
 	}
 } //namespace node
