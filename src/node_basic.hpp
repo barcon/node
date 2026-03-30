@@ -35,8 +35,8 @@ namespace node
 
 		void SetPoint(CoordinateIndex coordinateIndex, Scalar value) override;
 		void SetPoint(const Vector& point) override;
-		void SetValue(const Matrix& value) override;
 		void SetValue(DofIndex dofIndex, Scalar value) override;
+		void SetValue(const Matrix& value) override;
 		void SetTag(Tag tag) override;
 		void SetNumberDof(const NumberDof& numberDof) override;
 		

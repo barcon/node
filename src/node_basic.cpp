@@ -178,31 +178,39 @@ namespace node
 	
 	void Node::SetPoint(CoordinateIndex coordinateIndex, Scalar value)
 	{
+		if (coordinateIndex >= GetNumberCoordinates())
+		{
+			throw std::out_of_range("Coordinate index out of bounds (SetPoint)");
+		}
+
 		point_(coordinateIndex) = value;
 	}
 	void Node::SetPoint(const Vector& point)
 	{
 		if (point.GetRows() != point_.GetRows())
 		{
-			logger::Error(headerNode, "Size of point vector not compatible");
-			return;
+			throw std::invalid_argument("Size of point vector not compatible (SetPoint)");
 		}
 
 		point_ = point;
 	}
+	void Node::SetValue(DofIndex dofIndex, Scalar value)
+	{
+		if(dofIndex >= GetNumberDof())
+		{
+			throw std::out_of_range("Dof index out of bounds (SetValue)");
+		}
+
+		value_(dofIndex) = value;
+	}
 	void Node::SetValue(const Matrix& value)
 	{
-		if(value.GetRows() == 0 || value.GetCols() == 0)
+		if (value.GetRows() == 0 || value.GetCols() == 0)
 		{
-			logger::Error(headerNode, "Size of value matrix not compatible");
-			return;
+			throw std::invalid_argument("Size of value matrix not compatible (SetValue)");
 		}
 
 		value_ = value;
-	}
-	void Node::SetValue(DofIndex dofIndex, Scalar value)
-	{
-		value_(dofIndex) = value;
 	}
 	void Node::SetTag(Tag tag)
 	{
@@ -212,8 +220,7 @@ namespace node
 	{
 		if (numberDof == 0)
 		{
-			logger::Error(headerNode,"Number of dof equal to zero");
-			return;
+			throw std::invalid_argument("Number of dof equal to zero (SetNumberDof)");
 		}
 
 		SetValue(Matrix(numberDof, 1, eilig::matrix_zeros));

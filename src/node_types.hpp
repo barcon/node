@@ -69,8 +69,8 @@ namespace node
 
 		virtual void SetPoint(CoordinateIndex coordinateIndex, Scalar value) = 0;
 		virtual void SetPoint(const Vector& point) = 0;
-		virtual void SetValue(const Matrix& value) = 0;
 		virtual void SetValue(DofIndex dofIndex, Scalar value) = 0;
+		virtual void SetValue(const Matrix& value) = 0;
 		virtual void SetTag(Tag tag) = 0;
 		virtual void SetNumberDof(const NumberDof& numberDof) = 0;
 
