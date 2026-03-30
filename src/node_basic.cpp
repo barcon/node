@@ -6,7 +6,6 @@ namespace node
 	{
 		auto res = Node::Create(tag, 3);
 
-
 		return res;
 	}
 	NodePtr CreateNode(Tag tag, Scalar x)
@@ -38,15 +37,7 @@ namespace node
 	}
 	NodePtr CreateNode(Tag tag, const Vector& point)
 	{
-		NumberCoordinates numberCoordinates = point.GetRows();
-
-		if(numberCoordinates == 0)
-		{
-			logger::Error(headerNode, "Size of point vector not compatible");
-			return nullptr;
-		}
-
-		auto res = Node::Create(tag, numberCoordinates);
+		auto res = Node::Create(tag, point.GetRows());
 
 		res->SetPoint(point);
 
@@ -54,15 +45,7 @@ namespace node
 	}
 	NodePtr CreateNode(Tag tag, const Vector& point, const Matrix& value)
 	{
-		NumberCoordinates numberCoordinates = point.GetRows();
-
-		if (numberCoordinates == 0)
-		{
-			logger::Error(headerNode, "Size of point vector not compatible");
-			return nullptr;
-		}
-
-		auto res = Node::Create(tag, numberCoordinates);
+		auto res = Node::Create(tag, point.GetRows());
 
 		res->SetPoint(point);
 		res->SetValue(value);
@@ -82,20 +65,17 @@ namespace node
 		
 		if ((numberCoordinates < 1) || (numberCoordinates > 3))
 		{
-			logger::Error(headerNode, "Incompatible dimension, 0 < number dimensions < 4");
-			return nodes;
+			throw std::invalid_argument("Incompatible dimension, 0 < number dimensions < 4 (CreateNodes)");
 		}
 
 		if (cols < (numberCoordinates + 1))
 		{
-			logger::Error(headerNode, utils::string::Format("Incompatible matrix size, columns < {}", numberCoordinates + 1));
-			return nodes;
+			throw std::invalid_argument("Incompatible matrix size, columns < number coordinates + 1 (CreateNodes)");
 		}
 
 		if (rows < 1)
 		{
-			logger::Error(headerNode, "Incompatible matrix size, rows < 1");
-			return nodes;
+			throw std::invalid_argument("Incompatible matrix size, rows < 1 (CreateNodes)");
 		}
 
 		value.Resize(1, cols - numberCoordinates);
