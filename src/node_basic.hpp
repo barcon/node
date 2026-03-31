@@ -43,6 +43,8 @@ namespace node
 
 	protected:
 		Node() = default;
+		
+		void SetNumberCoordinates(const NumberCoordinates& numberCoordinates);
 
 		Vector point_;
 		Matrix value_;

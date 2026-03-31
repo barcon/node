@@ -122,7 +122,7 @@ namespace node
 
 		res->SetTag(tag);
 		res->SetNumberDof(1);
-		res->point_ = Vector(numberCoordinates, 0.0);
+		res->SetNumberCoordinates(numberCoordinates);
 
 		return res;
 	}
@@ -204,5 +204,9 @@ namespace node
 		}
 
 		SetValue(Matrix(numberDof, 1, eilig::matrix_zeros));
+	}
+	void Node::SetNumberCoordinates(const NumberCoordinates& numberCoordinates)
+	{
+		point_ = Vector(numberCoordinates, 0.0);
 	}
 } //namespace node
