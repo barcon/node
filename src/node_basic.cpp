@@ -125,11 +125,6 @@ namespace node
 		{
 		};
 
-		if (numberCoordinates == 0)
-		{
-			throw std::invalid_argument("Number of coordinates equal to zero (Create Node)");
-		}
-
 		auto res = std::make_shared<MakeSharedEnabler>();
 
 		res->SetNumberCoordinates(numberCoordinates);
@@ -217,6 +212,11 @@ namespace node
 	}
 	void Node::SetNumberCoordinates(const NumberCoordinates& numberCoordinates)
 	{
+		if (numberCoordinates == 0)
+		{
+			throw std::invalid_argument("Number of coordinates equal to zero (Create Node)");
+		}
+
 		point_ = Vector(numberCoordinates, 0.0);
 	}
 } //namespace node
