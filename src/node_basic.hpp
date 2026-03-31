@@ -23,7 +23,7 @@ namespace node
 	public:
 		virtual ~Node() = default;
 
-		static NodePtr Create(Tag tag, NumberCoordinates numberCoordinates);
+		static NodePtr Create(NumberCoordinates numberCoordinates);
 
 		const Vector& GetPoint() const override;
 		const Matrix& GetValue() const override;

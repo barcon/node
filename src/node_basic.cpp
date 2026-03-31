@@ -4,22 +4,29 @@ namespace node
 {
 	NodePtr CreateNode(Tag tag)
 	{
-		auto res = Node::Create(tag, 3);
+		auto res = Node::Create(3);
+
+		res->SetTag(tag);
+		res->SetNumberDof(1);
 
 		return res;
 	}
 	NodePtr CreateNode(Tag tag, Scalar x)
 	{
-		auto res = Node::Create(tag, 1);
+		auto res = Node::Create(1);
 
+		res->SetTag(tag);
+		res->SetNumberDof(1);
 		res->SetPoint(0, x);
 
 		return res;
 	}
 	NodePtr CreateNode(Tag tag, Scalar x, Scalar y)
 	{
-		auto res = Node::Create(tag, 2);
+		auto res = Node::Create(2);
 
+		res->SetTag(tag);
+		res->SetNumberDof(1);
 		res->SetPoint(0, x);
 		res->SetPoint(1, y);
 
@@ -27,8 +34,10 @@ namespace node
 	}
 	NodePtr CreateNode(Tag tag, Scalar x, Scalar y, Scalar z)
 	{
-		auto res = Node::Create(tag, 3);
+		auto res = Node::Create(3);
 
+		res->SetTag(tag);
+		res->SetNumberDof(1);
 		res->SetPoint(0, x);
 		res->SetPoint(1, y);
 		res->SetPoint(2, z);
@@ -37,16 +46,19 @@ namespace node
 	}
 	NodePtr CreateNode(Tag tag, const Vector& point)
 	{
-		auto res = Node::Create(tag, point.GetRows());
+		auto res = Node::Create(point.GetRows());
 
+		res->SetTag(tag);
+		res->SetNumberDof(1);
 		res->SetPoint(point);
 
 		return res;
 	}
 	NodePtr CreateNode(Tag tag, const Vector& point, const Matrix& value)
 	{
-		auto res = Node::Create(tag, point.GetRows());
+		auto res = Node::Create(point.GetRows());
 
+		res->SetTag(tag);
 		res->SetPoint(point);
 		res->SetValue(value);
 
@@ -107,7 +119,7 @@ namespace node
 		return nodes;
 	}
 	
-	NodePtr Node::Create(Tag tag, NumberCoordinates numberCoordinates)
+	NodePtr Node::Create(NumberCoordinates numberCoordinates)
 	{
 		class MakeSharedEnabler : public Node
 		{
@@ -120,8 +132,6 @@ namespace node
 
 		auto res = std::make_shared<MakeSharedEnabler>();
 
-		res->SetTag(tag);
-		res->SetNumberDof(1);
 		res->SetNumberCoordinates(numberCoordinates);
 
 		return res;
