@@ -172,7 +172,7 @@ namespace node
 	}
 	void Node::SetPoint(const Vector& point)
 	{
-		if (point.GetRows() != point_.GetRows())
+		if (point.GetRows() != GetNumberCoordinates())
 		{
 			throw std::invalid_argument("Size of point vector not compatible (SetPoint)");
 		}
