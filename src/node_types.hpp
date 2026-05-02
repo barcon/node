@@ -10,7 +10,7 @@
 
 namespace dive
 {
-	namespace elements
+	namespace element
 	{
 		class IElement;
 		using IElementPtr = std::shared_ptr< IElement >;
@@ -41,7 +41,7 @@ namespace node
 	
 	const String headerNode = "NODE";
 
-	using IElementPtr = dive::elements::IElementPtr;
+	using IElementPtr = dive::element::IElementPtr;
 	using Elements = std::vector<IElementPtr>;
 
 	struct Connectivity {
