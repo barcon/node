@@ -24,6 +24,7 @@ namespace node
 
 	using NumberDof = Number;
 	using NumberCoordinates = Number;
+	using NumberNodes = Number;
 
 	using DofIndex = Index;
 	using DofIndices = std::vector<DofIndex>;
