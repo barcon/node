@@ -208,7 +208,7 @@ namespace node
 			throw std::invalid_argument("Number of dof equal to zero (SetNumberDof)");
 		}
 
-		SetValue(Matrix(numberDof, 1, eilig::matrix_zeros));
+		SetValue(Matrix(numberDof, 1, MatrixType::zeros));
 	}
 	void Node::SetNumberCoordinates(const NumberCoordinates& numberCoordinates)
 	{
