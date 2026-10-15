@@ -20,24 +20,15 @@ namespace dive
 
 namespace node
 {
-	using Scalar = eilig::Scalar;
-	using Vector = eilig::Vector;
-	using Matrix = eilig::Matrix;
+	using namespace eilig;
 
-	using Number = std::size_t;
 	using NumberDof = Number;
 	using NumberCoordinates = Number;
 
-	using Index = std::size_t;
-	using Indices = std::vector<Index>;
 	using DofIndex = Index;
 	using DofIndices = std::vector<DofIndex>;
-	using CoordinateIndex = Index;
-
-	using Matrices = std::vector<Matrix>;
-	using String = utils::String;
-	using Tag = std::size_t;
-	using Dimension = std::size_t;
+	using CoordinateIndex = Index;	
+	using Dimension = Number;
 	
 	const String headerNode = "NODE";
 
