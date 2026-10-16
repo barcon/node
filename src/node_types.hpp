@@ -23,13 +23,14 @@ namespace node
 	using namespace eilig;
 
 	using NumberDof = Number;
-	using NumberCoordinates = Number;
 	using NumberNodes = Number;
+	using NumberCoordinates = Number;
 
 	using DofIndex = Index;
 	using DofIndices = std::vector<DofIndex>;
+	
+	using Coordinate = Index;	
 	using CoordinateIndex = Index;	
-	using Dimension = Number;
 	
 	const String headerNode = "NODE";
 
